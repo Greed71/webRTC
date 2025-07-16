@@ -1,108 +1,108 @@
 # WebRTC Video Chat Room
 
-Un'applicazione di video chat peer-to-peer in tempo reale costruita con WebRTC, Node.js e WebSocket.
+A real-time peer-to-peer video chat application built with WebRTC, Node.js, and WebSocket.
 
-## 🚀 Caratteristiche
+## 🚀 Features
 
-- **Video chat in tempo reale** tra due peer
-- **Chat testuale** integrata
-- **Controlli video e audio** (mute/unmute)
-- **Interfaccia web intuitiva** e responsive
-- **Connessione peer-to-peer diretta** usando WebRTC
-- **Gestione delle stanze** con nomi personalizzati
-- **Console di debug** per monitorare lo stato WebRTC
+- **Real-time video chat** between two peers
+- **Integrated text chat**
+- **Video and audio controls** (mute/unmute)
+- **Intuitive and responsive** web interface
+- **Direct peer-to-peer connection** using WebRTC
+- **Room management** with custom names
+- **Debug console** to monitor WebRTC status
 
-## 🛠️ Tecnologie Utilizzate
+## 🛠️ Technologies Used
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6 Modules)
 - **Backend**: Node.js, Express.js
-- **WebRTC**: Per la comunicazione peer-to-peer
-- **WebSocket**: Per la segnalazione tra client
-- **STUN Server**: Google STUN servers per NAT traversal
+- **WebRTC**: For peer-to-peer communication
+- **WebSocket**: For signaling between clients
+- **STUN Server**: Google STUN servers for NAT traversal
 
-## 📋 Prerequisiti
+## 📋 Prerequisites
 
-- Node.js (versione 14 o superiore)
+- Node.js (version 14 or higher)
 - npm (Node Package Manager)
-- Browser moderno con supporto WebRTC (Chrome, Firefox, Safari, Edge)
+- Modern browser with WebRTC support (Chrome, Firefox, Safari, Edge)
 
-## 🔧 Installazione
+## 🔧 Installation
 
-1. **Clona il repository**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/Greed71/webRTC.git
    cd webRTC
    ```
 
-2. **Installa le dipendenze**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Avvia il server**
+3. **Start the server**
    ```bash
    node app.js
    ```
 
-4. **Apri il browser**
+4. **Open your browser**
    ```
    http://localhost:3000
    ```
 
-## 🎮 Come Utilizzare
+## 🎮 How to Use
 
-### Creazione di una Stanza
-1. Apri l'applicazione nel browser
-2. Inserisci un nome per il canale/stanza
-3. Clicca su **"Create"** per creare una nuova stanza
+### Creating a Room
+1. Open the application in your browser
+2. Enter a channel/room name
+3. Click **"Create"** to create a new room
 
-### Partecipazione a una Stanza
-1. Apri l'applicazione in un altro tab/browser/dispositivo
-2. Inserisci lo stesso nome del canale
-3. Clicca su **"Join"** per unirti alla stanza
+### Joining a Room
+1. Open the application in another tab/browser/device
+2. Enter the same channel name
+3. Click **"Join"** to join the room
 
-### Durante la Video Chat
-- **📹 Toggle Video**: Attiva/disattiva la tua videocamera
-- **🎤 Toggle Audio**: Attiva/disattiva il tuo microfono
-- **Chat**: Usa la chat testuale per comunicare
-- **Exit Room**: Esci dalla stanza corrente
-- **Destroy Room**: Elimina completamente la stanza
+### During Video Chat
+- **📹 Toggle Video**: Turn your camera on/off
+- **🎤 Toggle Audio**: Turn your microphone on/off
+- **Chat**: Use text chat to communicate
+- **Exit Room**: Leave the current room
+- **Destroy Room**: Completely delete the room
 
-## 📁 Struttura del Progetto
+## 📁 Project Structure
 
 ```
 webRTC/
-├── app.js                 # Server Express con WebSocket
-├── constants.js           # Costanti condivise server-side
-├── package.json           # Dipendenze del progetto
+├── app.js                 # Express server with WebSocket
+├── constants.js           # Shared server-side constants
+├── package.json           # Project dependencies
 ├── public/
-│   ├── index.html         # Interfaccia utente principale
-│   ├── main.js            # Script principale client-side
-│   ├── style.css          # Stili CSS
+│   ├── index.html         # Main user interface
+│   ├── main.js            # Main client-side script
+│   ├── style.css          # CSS styles
 │   └── modules/
-│       ├── ajax.js        # Gestione richieste HTTP
-│       ├── constants.js   # Costanti client-side
-│       ├── state.js       # Gestione stato applicazione
-│       ├── uiUtils.js     # Utilità interfaccia utente
-│       ├── webRTCHandler.js # Logica WebRTC principale
-│       └── ws.js          # Gestione WebSocket client-side
-└── README.md              # Questo file
+│       ├── ajax.js        # HTTP request handling
+│       ├── constants.js   # Client-side constants
+│       ├── state.js       # Application state management
+│       ├── uiUtils.js     # User interface utilities
+│       ├── webRTCHandler.js # Main WebRTC logic
+│       └── ws.js          # Client-side WebSocket handling
+└── README.md              # This file
 ```
 
 ## 🔧 API Endpoints
 
 ### POST `/create-room`
-Crea una nuova stanza video chat.
+Creates a new video chat room.
 
 **Body:**
 ```json
 {
-  "roomName": "nome-stanza",
-  "userId": "id-utente-univoco"
+  "roomName": "room-name",
+  "userId": "unique-user-id"
 }
 ```
 
-**Risposta di successo:**
+**Success Response:**
 ```json
 {
   "data": {
@@ -114,73 +114,73 @@ Crea una nuova stanza video chat.
 
 ## 🌐 WebSocket Events
 
-### Eventi Client → Server
-- `ROOM_JOIN_REQUEST`: Richiesta di unirsi a una stanza
-- `WEBRTC_OFFER`: Invio dell'offerta WebRTC
-- `WEBRTC_ANSWER`: Invio della risposta WebRTC
-- `ICE_CANDIDATE`: Invio di candidati ICE
+### Client → Server Events
+- `ROOM_JOIN_REQUEST`: Request to join a room
+- `WEBRTC_OFFER`: Send WebRTC offer
+- `WEBRTC_ANSWER`: Send WebRTC answer
+- `ICE_CANDIDATE`: Send ICE candidates
 
-### Eventi Server → Client
-- `ROOM_JOIN_SUCCESS/FAILURE`: Risultato dell'unione alla stanza
-- `PEER_CONNECTION_REQUEST`: Richiesta di connessione peer
-- `WEBRTC_OFFER/ANSWER`: Trasferimento messaggi WebRTC
-- `ICE_CANDIDATE`: Trasferimento candidati ICE
+### Server → Client Events
+- `ROOM_JOIN_SUCCESS/FAILURE`: Result of joining the room
+- `PEER_CONNECTION_REQUEST`: Peer connection request
+- `WEBRTC_OFFER/ANSWER`: WebRTC message forwarding
+- `ICE_CANDIDATE`: ICE candidate forwarding
 
-## 🔍 Debug e Monitoring
+## 🔍 Debug and Monitoring
 
-L'applicazione include una console di debug integrata che mostra:
-- ID sessione univoco
-- Eventi WebRTC in tempo reale
-- Stato delle connessioni
-- Messaggi di errore e successo
+The application includes an integrated debug console that shows:
+- Unique session ID
+- Real-time WebRTC events
+- Connection status
+- Error and success messages
 
-## 🤝 Contribuire
+## 🤝 Contributing
 
-1. Fai un fork del progetto
-2. Crea un branch per la tua feature (`git checkout -b feature/nuova-feature`)
-3. Committa le tue modifiche (`git commit -am 'Aggiungi nuova feature'`)
-4. Pusha sul branch (`git push origin feature/nuova-feature`)
-5. Apri una Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## 📝 TODO / Miglioramenti Futuri
+## 📝 TODO / Future Improvements
 
-- [ ] Supporto per più di due utenti per stanza
-- [ ] Registrazione e salvataggio delle chat
-- [ ] Condivisione schermo
-- [ ] Filtri e effetti video
-- [ ] Autenticazione utenti
-- [ ] Stanze persistenti
-- [ ] Notifiche push
-- [ ] Mobile responsive migliorato
+- [ ] Support for more than two users per room
+- [ ] Chat recording and saving
+- [ ] Screen sharing
+- [ ] Video filters and effects
+- [ ] User authentication
+- [ ] Persistent rooms
+- [ ] Push notifications
+- [ ] Improved mobile responsiveness
 
-## 🐛 Problemi Noti
+## 🐛 Known Issues
 
-- La connessione potrebbe fallire dietro alcuni firewall aziendali
-- Su alcune reti, potrebbero essere necessari server TURN aggiuntivi
-- La qualità video dipende dalla banda disponibile
+- Connection may fail behind some corporate firewalls
+- Additional TURN servers may be needed on some networks
+- Video quality depends on available bandwidth
 
-## 📞 Supporto Browser
+## 📞 Browser Support
 
-| Browser | Versione Minima | Supporto |
+| Browser | Minimum Version | Support |
 |---------|----------------|----------|
-| Chrome  | 56+            | ✅ Completo |
-| Firefox | 44+            | ✅ Completo |
-| Safari  | 11+            | ✅ Completo |
-| Edge    | 79+            | ✅ Completo |
+| Chrome  | 56+            | ✅ Full |
+| Firefox | 44+            | ✅ Full |
+| Safari  | 11+            | ✅ Full |
+| Edge    | 79+            | ✅ Full |
 
-## 📄 Licenza
+## 📄 License
 
-Questo progetto è rilasciato sotto licenza ISC. Vedi il file `package.json` per i dettagli.
+This project is released under the ISC license. See the `package.json` file for details.
 
-## 👨‍💻 Autore
+## 👨‍💻 Author
 
 **Greed71** - [GitHub Profile](https://github.com/Greed71)
 
 ---
 
-⭐ Se questo progetto ti è stato utile, lascia una stella su GitHub!
+⭐ If this project was helpful to you, please give it a star on GitHub!
 
-## 🔗 Link Utili
+## 🔗 Useful Links
 
 - [WebRTC MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
 - [Express.js Documentation](https://expressjs.com/)
